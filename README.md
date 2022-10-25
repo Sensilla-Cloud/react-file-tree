@@ -23,12 +23,15 @@ import FileTree from 'react-file-tree';
 
 const data = [
     {
+        id: 1,
         name: 'abc',
         children: [
             {
+                id: 2,
                 name: 'def'
             },
             {
+                id: 3,
                 name: 'ghi'
             }
         ]
