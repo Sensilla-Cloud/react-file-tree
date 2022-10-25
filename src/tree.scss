@@ -1,0 +1,51 @@
+.react-file-tree {
+    .react-file-tree-child, .react-file-tree-virtual-child-wrapper {
+        .react-file-tree-child-row{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .react-file-tree-child-fold-button {
+                margin-right: 5px;
+                cursor: pointer;
+            }
+        }
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+        .react-file-tree-child-button {
+            background-color: #ddd;
+            border-radius: .25em;
+            border: 1px solid black;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            user-select: none;
+        }
+        &.react-file-tree-child-selected {
+            background-color: lightblue;
+        }
+        &.react-file-tree-child-disabled {
+            background-color: #aaa;
+        }
+        .react-file-tree-child-label {
+            flex-grow: 1;
+        }
+    }
+    // For specificity to avoid using important, nested deeper
+    // Probably could be done better
+    &.react-file-tree-disabled {
+        .react-file-tree-child {
+            .react-file-tree-child-row {
+                background-color: #eee;
+                .react-file-tree-child-button {
+                    background-color: #aaa;
+                    color: #ccc;
+                }
+                .react-file-tree-child-fold-button {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

@@ -1,1 +1,47 @@
 # react-file-tree
+
+React-File-Tree is designed to be a kitchen-sink component that you can drop in and forget about.
+It does however, come with a multitude of customization options to make it behave like you want.
+
+## Installation
+
+```bash
+npm install react-file-tree
+```
+
+or
+
+```bash
+yarn add react-file-tree
+```
+
+## Basic Usage
+
+```jsx
+import React from 'react';
+import FileTree from 'react-file-tree';
+
+const data = [
+    {
+        name: 'abc',
+        children: [
+            {
+                name: 'def'
+            },
+            {
+                name: 'ghi'
+            }
+        ]
+    }
+]
+
+const App = () => (
+    <FileTree data={data} />
+)
+```
+
+You can view the api documentation [here](https://sensilla-cloud.github.io/react-file-tree/)
+
+## License
+
+This project is licensed under the terms of the MIT license.

@@ -1,0 +1,170 @@
+# Introduction
+React-File-Tree is designed to be a kitchen-sink component that you can drop in and forget about.
+It does however, come with a multitude of customization options to make it behave like you want.
+The stories contained in this storybook go over the majority of the options and customizations you can use,
+the controls panel allows you to toggle some common tree-level options for each story.
+
+# Styling
+There are included styles that can be used with the default renderer to just drop in and go, however,
+these styles will not apply if a custom renderer or any of the classname options are changed.  The styles 
+can be used as a reference point if you choose to go custom.
+
+# Public API
+```typescript
+const DefaultRenderOptions: RenderOptions = {
+  childClassName: 'react-file-tree-child',
+  expandTool: <div className="react-file-tree-child-button">+</div>,
+  collapseTool: <div className="react-file-tree-child-button">-</div>,
+  indentWidth: 16
+};
+
+const TreeDefaultProps: Partial<TreeProps> = {
+  className: 'react-file-tree',
+  renderOptions: DefaultRenderOptions,
+  filterFn: (node: Node, filter: string) =>
+    node.name.toLowerCase().includes(filter.toLowerCase())
+};
+
+export interface Node {
+  id: string | number;
+  name: string;
+  data?: any;
+
+  children?: Node[];
+
+  expanded?: boolean;
+  disabled?: boolean;
+  selected?: boolean;
+  selectable?: boolean;
+}
+
+export type RenderOptions = Partial<{
+  childClassName: string;
+  expandTool: React.ReactNode;
+  collapseTool: React.ReactNode;
+  indentWidth: number;
+}>;
+
+export type NodeState = {
+  expanded: boolean;
+  depth: number;
+  selected: boolean;
+  disabled: boolean;
+  selectable: boolean;
+  parent: Node | null;
+};
+
+export type ChildRenderer = (
+  node: Node,
+  state: NodeState,
+  props: TreeProps,
+  callbacks: {
+    expand: (node: Node) => void;
+    collapse: (node: Node) => void;
+    select: (node: Node) => void;
+    deselect: (node: Node) => void;
+  }
+) => JSX.Element;
+export type FilterFn = (node: Node, filter: string) => boolean;
+
+export interface TreeProps {
+  data: Node[];
+  className?: string;
+  childRenderer?: ChildRenderer;
+  renderOptions?: RenderOptions;
+  virtual?: boolean;
+
+  onExpand?: (node: Node) => void;
+  onCollapse?: (node: Node) => void;
+
+  selectable?: boolean;
+  multiSelect?: boolean;
+  onSelect?: (node: Node) => void;
+  onDeselect?: (node: Node) => void;
+
+  disabled?: boolean;
+
+  filterable?: boolean;
+  filter?: string;
+  filterFn?: FilterFn;
+}
+
+export type TreeType = React.FC<TreeProps>;
+```
+---
+### Node
+#### id
+A unique identifier for the node
+#### name
+The default display text for the node
+#### data
+Arbitrary data for convenience
+#### children
+The `Node` children of this node (for building the tree)
+#### expanded - disabled - selected - selectable
+Override default state of the node
+
+---
+### RenderOptions - For the included default renderer
+#### childClassName
+The classname prefix to be applied to the rendered children
+#### expandTool
+The component/jsx element to be used for expanding
+#### collapseTool
+The component/jsx element to be used for collapsing
+#### indentWidth
+The width of indent for each level in pixels
+
+---
+### ChildRenderer
+This type describes the expected format of a custom renderer.
+You don't have to use all the passed properties, however, you lose functionality if don't use it all.
+> Note: The `Custom Node` story shows an example usage
+
+#### node
+The current `Node` for rendering
+#### state
+The current `NodeState` for the current `Node`
+> Note: Depth represents the current level of the node.
+
+#### props
+The props of the `Tree`
+#### callbacks
+Callbacks to be called when the corresponding event should occur.
+
+---
+### TreeProps
+These props control the overall behavior of the tree.
+
+#### data
+The array of `Node` to be used.
+#### className
+The classname prefix to be applied to the tree's organizational components
+#### childRenderer
+A custom render function to be used instead of the default renderer
+#### renderOptions
+Options to be passed to the default renderer
+#### virtual
+Whether or not to use virtualization to improve performance on large trees
+#### onExpand
+A callback that is called when a node is expanded
+#### onCollapse
+A callback that is called when a node is collapsed
+#### selectable
+Enable or disable selection
+#### multiSelect
+Whether or not to allow multiple selections
+#### onSelect
+A callback that is called when a node is selected
+#### onDeselect
+A callback that is called when a node is deselected
+> Note: This event only fires when the user explicitly clicks a node to deselect it
+
+#### disabled
+Whether or not the tree should allow interaction
+#### filterable
+Whether or not the tree should be filterable
+#### filter
+The current value to filter for
+#### filterFn
+A custom filtering function to be used instead of the default filter function
