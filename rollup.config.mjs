@@ -23,7 +23,7 @@ export default [
                 format: 'cjs',
                 sourcemap: true,
                 globals,
-                exports: 'default'
+                exports: 'named'
             },
             {
                 file: './lib/esm/index.js',
