@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c && sass src/tree.scss lib/index.css --no-source-map --style compressed",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs-build"
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
