@@ -6,20 +6,20 @@ It does however, come with a multitude of customization options to make it behav
 ## Installation
 
 ```bash
-npm install react-file-tree
+npm install @sensilla-cloud/react-file-tree
 ```
 
 or
 
 ```bash
-yarn add react-file-tree
+yarn add @sensilla-cloud/react-file-tree
 ```
 
 ## Basic Usage
 
 ```jsx
 import React from 'react';
-import FileTree from 'react-file-tree';
+import FileTree from '@sensilla-cloud/react-file-tree';
 
 const data = [
     {

@@ -1,6 +1,6 @@
 {
   "name": "@sensilla-cloud/react-file-tree",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Virtualized tree for displaying hierarchy in a traditional file-tree format",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
