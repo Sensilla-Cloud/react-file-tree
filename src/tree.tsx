@@ -137,9 +137,9 @@ const Tree: TreeType = (givenProps) => {
     [nodeState, props.renderOptions, givenProps.childRenderer]
   );
 
-  const RenderVirtual = React.memo(
+  const RenderVirtual = React.useCallback(
     ({ i, model }: { i: number; model: typeof useVirtual }) => {
-      if (!nodeState.has(props.data[i].id)) {
+      if (!props.data[i] || !nodeState.has(props.data[i].id)) {
         return null;
       }
       return (
@@ -153,7 +153,8 @@ const Tree: TreeType = (givenProps) => {
           )}
         </div>
       );
-    }
+    },
+    [props.data, nodeState]
   );
 
   const DefaultRender = (
