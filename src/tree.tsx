@@ -154,7 +154,7 @@ const Tree: TreeType = (givenProps) => {
         </div>
       );
     },
-    [props.data, nodeState]
+    [props.data, nodeState, visibleNodes]
   );
 
   const DefaultRender = (
