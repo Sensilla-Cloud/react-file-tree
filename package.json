@@ -1,6 +1,6 @@
 {
   "name": "@sensilla-cloud/react-file-tree",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Virtualized tree for displaying hierarchy in a traditional file-tree format",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
@@ -76,8 +76,8 @@
     "typescript": "^5.0.2"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
     "@af-utils/react-virtual-headless": "^0.0.49",
